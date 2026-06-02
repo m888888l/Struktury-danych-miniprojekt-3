@@ -11,7 +11,6 @@ class HTOpenAddressing : public Base {
     void print();
 
     private:
-    int hash(int key, int size);
     int size;
     int capacity;
     float load_factor();

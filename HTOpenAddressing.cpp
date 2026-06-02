@@ -9,9 +9,7 @@ HTOpenAddressing::~HTOpenAddressing(){
     delete[] data;
 }
 
-int HTOpenAddressing::hash(int key, int size){
-    return key % size;
-}
+
 
 void HTOpenAddressing::insert(int value, int key){
     if(load_factor() >= 0.7) resize();

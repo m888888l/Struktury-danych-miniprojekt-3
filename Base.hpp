@@ -17,4 +17,5 @@ public:
   virtual void print() = 0;
   virtual ~Base() = default;
   void load_from_file(std::string fileName, char separator);
+  int hash(int key, int size);
 };
