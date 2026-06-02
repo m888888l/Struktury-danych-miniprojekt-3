@@ -2,8 +2,19 @@
 
 #include "Base.hpp"
 
-class HTOpenAddressing : public Base(){
+class HTOpenAddressing : public Base {
     public:
-    HTOpenAddressing() = 0;
-    ~HTOpenAddressing() = default;
+    HTOpenAddressing(int size);
+    ~HTOpenAddressing();
+    void insert(int value, int key);
+    Element remove(int key);
+    void print();
+
+    private:
+    int hash(int key, int size);
+    int size;
+    int capacity;
+    float load_factor();
+    void resize();
+    Element* data;
 };
