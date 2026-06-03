@@ -2,8 +2,19 @@
 
 #include "Base.hpp"
 
-class HTSeperateChaining : public Base(){
+class HTSeparateChaining : public Base {
     public:
-    HTSeperateChaining() = 0;
-    ~HTSeperateChaining() = default;
+    HTSeparateChaining(int size);
+    ~HTSeparateChaining();
+    void insert(int value, int key);
+    Element remove(int key);
+    void print();
+
+    private:
+    int size;
+    int capacity;
+    float load_factor();
+    void resize();
+    Element** data;
+    int* bucket_size;
 };
