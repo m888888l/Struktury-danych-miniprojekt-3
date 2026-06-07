@@ -1,6 +1,6 @@
 #include "Benchmark.hpp"
 
-const int SIZES[8] = {10, 20, 30, 40, 50, 60, 70, 80};
+const int SIZES[8] = {1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000};
 const int SAMPLES = 100;
 
 Benchmark::Benchmark(){};

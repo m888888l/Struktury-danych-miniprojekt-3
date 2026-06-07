@@ -8,9 +8,6 @@
 using namespace std;
 
 int main(){
-    Benchmark test;
-
-    test.run();
     int choice;
 
     while(1){
