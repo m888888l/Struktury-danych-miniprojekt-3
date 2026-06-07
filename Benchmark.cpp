@@ -35,7 +35,7 @@ Element* Benchmark::generate_values_to_add(int seed, int size){
 void Benchmark::write_result_to_file(std::ofstream &file, int size, const std::string &opName, int structure, const unsigned long long &time) {
     std::string structure_name;
     if(structure == 0) structure_name = "Open Addressing";
-    else if(structure == 1) structure_name = "Seperate Chaining";
+    else if(structure == 1) structure_name = "Separate Chaining";
     else if(structure == 2) structure_name = "AVL Tree";
     file << size << ";" << opName << ";" << structure_name << ";" << time << "\n";
 }
