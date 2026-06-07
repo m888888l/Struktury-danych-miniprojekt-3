@@ -50,19 +50,23 @@ void Benchmark::run(){
             auto end = start;
 
             //insert()
-
+            std::cout<<"Wypelnianie struktury "<< structure <<" dla insert, rozmiar "<<size<<"\n";
             Base** structure_samples = create_structure_samples(structure, size);
             for(int i = 0; i < SAMPLES; i++){
                 fill_structure(size, size + i, structure_samples[i]);   //seed zalezy od size'a i numeru probki aby kazdy rozmiar i probka miala
             }                                                           //inne wartosci, ale kazda struktura ogolnie miala te same
             Element* values_to_add = generate_values_to_add(size, size); //tablica elementow do dodania do konkretnych probek
             
+            std::cout<<"Testowanie insert dla struktury "<< structure <<", rozmiar "<<size<<"\n";
+
             start = std::chrono::high_resolution_clock::now();
             for(int i = 0; i < SAMPLES; i++){
                 structure_samples[i]->insert(values_to_add[i].value, values_to_add[i].key);
             }
             end = std::chrono::high_resolution_clock::now();
             write_result_to_file(file, size, "insert", structure, std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/SAMPLES);
+
+            std::cout<<"Czysczenie struktury "<< structure <<", po insert rozmiar "<<size<<"\n";
 
             delete[] values_to_add;
             for(int i = 0; i < SAMPLES; i++){
@@ -71,20 +75,24 @@ void Benchmark::run(){
             delete[] structure_samples;
 
             //remove()
-            
+
+            std::cout<<"Wypelnianie struktury "<< structure <<" dla remove, rozmiar "<<size<<"\n";
             structure_samples = create_structure_samples(structure, size);
             for(int i = 0; i < SAMPLES; i++){
                 fill_structure(size, size + i, structure_samples[i]);
             } 
             values_to_add = generate_values_to_add(size, size); //tablica losowych elementow, taka sama dla kazdej struktury, teraz
                                                                 //bedzie uzyta do wyboru klucza do usuniecia
-            
+            std::cout<<"Testowanie remove dla struktury "<< structure <<", rozmiar "<<size<<"\n";
+
             start = std::chrono::high_resolution_clock::now();
             for(int i = 0; i < SAMPLES; i++){
                 structure_samples[i]->remove(values_to_add[i].key);
             }
             end = std::chrono::high_resolution_clock::now();
             write_result_to_file(file, size, "remove", structure, std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()/100);
+
+            std::cout<<"Czysczenie struktury "<< structure <<", po remove rozmiar "<<size<<"\n";
 
             delete[] values_to_add;
             for(int i = 0; i < SAMPLES; i++){
