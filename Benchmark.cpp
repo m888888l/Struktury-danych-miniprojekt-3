@@ -1,6 +1,6 @@
 #include "Benchmark.hpp"
 
-const int SIZES[8] = {1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000};
+const int SIZES[8] = {500000, 1000000, 1500000, 2000000, 2500000, 3000000, 3500000, 4000000};
 const int SAMPLES = 100;
 
 Benchmark::Benchmark(){};
@@ -8,7 +8,7 @@ Benchmark::~Benchmark(){};
 
 void Benchmark::fill_structure(int size, int seed, Base* structure){
     std::mt19937 gen(seed);
-    std::uniform_int_distribution<> dist_values(0, 100000000);
+    std::uniform_int_distribution<> dist_values(0, 100000);
     std::uniform_int_distribution<> dist_keys(0, size * 10);
     for(int i = 0; i < size; i++) structure->insert(dist_values(gen), dist_keys(gen));
 }
