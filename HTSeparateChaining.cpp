@@ -42,41 +42,36 @@ void HTSeparateChaining::insert(int value, int key){
     size++;
 }
 
-Element HTSeparateChaining::remove(int key){
+Element HTSeparateChaining::remove(int key) {
     int i = hash(key, capacity);
 
     if (bucket_size[i] == 0) {
         return Element{};
     }
 
-    Element* new_bucket = new Element[bucket_size[i] - 1]{};
-
-    Element temp{};
-    bool found = false;
-    int k = 0;
+    int index = -1;
 
     for (int j = 0; j < bucket_size[i]; j++) {
-        if (data[i][j].key == key && !found) {
-            temp = data[i][j];
-            found = true;
-            continue;
+        if (data[i][j].key == key) {
+            index = j;
+            break;
         }
-
-        new_bucket[k++] = data[i][j];
     }
 
-    if (!found) {
-        delete[] new_bucket;
+    if (index == -1) {
         return Element{};
     }
 
-    delete[] data[i];
-    data[i] = new_bucket;
+    Element removed = data[i][index];
 
+    for (int j = index; j < bucket_size[i] - 1; j++) {
+        data[i][j] = data[i][j + 1];
+    }
+    data[i][bucket_size[i] - 1].key = -1;
     bucket_size[i]--;
     size--;
 
-    return temp;
+    return removed;
 }
 
 void HTSeparateChaining::print(){
